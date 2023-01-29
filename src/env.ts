@@ -28,7 +28,8 @@ export const {
   OPENAI_LOGIN_TYPE,
   OPENAI_PRO,
   CHATGPT_CONTEXT,
-  CHATGPT_TIMEOUT
+  CHATGPT_TIMEOUT,
+  CHATGPT_PROXY
 } = parseEnv(process.env, {
   DATA_PATH:                   { schema: z.string().default("./storage"),          description: "Set to /storage/ if using docker, ./storage if running without" },
   /** Matrix Bot Settings */
@@ -54,5 +55,6 @@ export const {
   OPENAI_LOGIN_TYPE:           { schema: z.enum(["google", "openai", "microsoft"]).default("google"), description: "Set authentication provider to 'google', 'openai' or 'microsoft'" },
   OPENAI_PRO:                  { schema: z.boolean().default(false),               description: "Set to true if you have a paid ChatGPT subscription." },
   CHATGPT_TIMEOUT:             { schema: z.number().default(2 * 60 * 1000),        description: "Set number of milliseconds to wait for ChatGPT responses" },
-  CHATGPT_CONTEXT:             { schema: z.enum(["thread", "room", "both"]).default("thread"), description: "Set the ChatGPT conversation context to 'thread', 'room' or 'both'" }
+  CHATGPT_CONTEXT:             { schema: z.enum(["thread", "room", "both"]).default("thread"), description: "Set the ChatGPT conversation context to 'thread', 'room' or 'both'" },
+  CHATGPT_PROXY:            { schema: z.string().optional(),                    description: "Set the Proxy for ChatGPT if needed. for more information on the format, see https://www.chromium.org/developers/design-documents/network-settings" }
 });
